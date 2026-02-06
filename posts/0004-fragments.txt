@@ -1,5 +1,5 @@
 <h2>fragments</h2>
-[2026-02-04 160000]
+2026-06-03T09:30:00
 <p>smaller text</p>
 
 <img src="/images/room.jpg">

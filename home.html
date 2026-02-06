@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Home - WordEater</title>
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/mobile.css">
+<style>
+  /* Override background for home page only */
+  body {
+    background: rgb(0, 0, 0);
+  }
+
+  .main {
+    background: black;
+    color: white; /* ensure text is visible */
+    margin-top: 100px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <div class="links">
+      <a href="home.html">home</a>
+      <a href="index.html">blog</a>
+      <a href="navigator.html">navigator</a>
+    </div>
+
+    <a href="mainpage.html" class="brand">wordeater.online</a>
+  </div>
+
+  <div class="nav-image"></div>
+</nav>
+
+<div class="layout">
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="content-box">
+        <a href="mainpage.html">wordeater.online</a>
+      </div>
+      <div class="content-box horizontal-links">
+        <a href="reader.html">reader</a>
+        <a href="index.html">blog</a>
+        <a href="navigator.html">navigator</a>
+      </div>
+    </div>
+    <div class="sidebar-section"></div>
+    <div class="sidebar-section"></div>
+  </div>
+
+<div class="main" style="background:black;">
+  <noscript>
+    <div class="post">
+      Please enable JavaScript to see content.
+    </div>
+  </noscript>
+
+  <div id="post-content"></div>
+</div>
+
+<script src="js/mobile.js"></script>
+
+<script>
+  fetch('posts/home.txt')
+    .then(res => res.text())
+    .then(text => {
+      const postContainer = document.getElementById('post-content');
+      postContainer.innerHTML = `<div class="post">${text}</div>`;
+    });
+</script>
+
+
+</body>
+</html>

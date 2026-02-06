@@ -2,33 +2,61 @@ const postContainer = document.getElementById('post-content');
 let posts = [];
 let loadedCount = 0;
 const POSTS_PER_PAGE = 5;
+const loadedFiles = new Set();
 
-// Fetch index.json and initialize post loading
+const isHomepage = location.pathname === '/';
+const params = new URLSearchParams(location.search);
+const permalinkFile = params.get('file');
+
+// Fetch all posts
 fetch('posts/index.json')
   .then(res => res.json())
   .then(list => {
-    // Sort numerically by filename prefix, newest first
-    posts = list.slice().sort((a, b) => parseInt(b.split('-')[0], 10) - parseInt(a.split('-')[0], 10));
-    
-    // Check if a specific post is requested via URL
-    const params = new URLSearchParams(location.search);
-    const postFile = params.get('file');
-    if (postFile && posts.includes(postFile)) {
-      loadPost(postFile, false);
-    } else {
-      loadNextPosts(); // Load initial batch
-    }
+    // Fetch each post to extract its date for sorting
+    const postPromises = list.map(file =>
+      fetch(`posts/${file}`)
+        .then(res => res.text())
+        .then(text => {
+          const lines = text.split('\n');
+          const date = lines[1]?.replace(/[\[\]]/g, '') || '1970-01-01';
+          return { file, date: new Date(date) };
+        })
+    );
+
+    Promise.all(postPromises).then(postData => {
+      // Sort by date, newest first
+      posts = postData.sort((a, b) => b.date - a.date).map(p => p.file);
+
+      if (permalinkFile && posts.includes(permalinkFile)) {
+        loadPost(permalinkFile, false);
+      } else if (isHomepage) {
+        fetch('posts/home.txt')
+          .then(res => res.text())
+          .then(text => {
+            postContainer.innerHTML = `<div class="post">${text}</div>`;
+          });
+      } else {
+        loadNextPosts();
+      }
+    });
   });
 
-// Load next batch of posts for infinite scroll
+// Load next batch for infinite scroll
 function loadNextPosts() {
   const nextPosts = posts.slice(loadedCount, loadedCount + POSTS_PER_PAGE);
-  nextPosts.forEach(file => loadPost(file, true));
+  nextPosts.forEach(file => {
+    if (!loadedFiles.has(file)) {
+      loadPost(file, true);
+      loadedFiles.add(file);
+    }
+  });
   loadedCount += nextPosts.length;
 }
 
-// Fetch and render a single post
+// Load and render a single post
 function loadPost(file, append = false) {
+  if (loadedFiles.has(file) && append) return;
+
   fetch(`posts/${file}`)
     .then(res => res.text())
     .then(text => {
@@ -40,7 +68,7 @@ function loadPost(file, append = false) {
       const postEl = document.createElement('div');
       postEl.className = 'post';
       postEl.innerHTML = `
-        <h2>${title}</h2>
+        <h2><a href="?file=${file}">${title}</a></h2>
         <div class="post-date">${date}</div>
         <div class="post-body">${content}</div>
       `;
@@ -51,35 +79,19 @@ function loadPost(file, append = false) {
         postContainer.innerHTML = '';
         postContainer.appendChild(postEl);
       }
+
+      loadedFiles.add(file);
     });
 }
 
-// Infinite scroll: load more posts when near bottom
+// Infinite scroll
 window.addEventListener('scroll', () => {
-  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100) {
-    if (loadedCount < posts.length) {
-      loadNextPosts();
-    }
+  if (window.innerHeight + window.scrollY >= document.body.offsetHeight - 100 && loadedCount < posts.length) {
+    loadNextPosts();
   }
 });
 
-// For homepage only: fetch home.txt
-fetch('posts/home.txt')
-  .then(res => res.text())
-  .then(text => {
-    const postContainer = document.getElementById('post-content');
-    postContainer.innerHTML = `<div class="post">${text}</div>`;
-  });
-
-  const toggle = document.getElementById('dark-mode-toggle');
-
-toggle.addEventListener('click', () => {
-  document.body.classList.toggle('dark');
-});
-
-
-document.querySelectorAll('.dark-mode-toggle').forEach(btn => {
-  btn.addEventListener('click', () => {
-    document.body.classList.toggle('dark');
-  });
+// Dark mode toggle
+document.querySelectorAll('.dark-mode-toggle, #dark-mode-toggle').forEach(btn => {
+  btn.addEventListener('click', () => document.body.classList.toggle('dark'));
 });

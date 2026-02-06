@@ -1,0 +1,38 @@
+/* posts.css */
+.post {
+  border: 1px solid #ccc;      /* simple border */
+  border-radius: 8px;          /* rounded corners */
+  padding: 16px;               /* inner spacing */
+  margin-bottom: 20px;         /* spacing between posts */
+  background-color: #fefefe;   /* light background */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* subtle shadow */
+}
+
+.post h2 {
+  margin-top: 0;
+  margin-bottom: 8px;
+  font-size: 1.5em;
+}
+
+.post-date {
+  font-size: 0.9em;
+  color: #666;
+  margin-bottom: 12px;
+}
+
+.post-body {
+  line-height: 1.5;
+}
+
+/* Optional: make links inside post-body stand out */
+.post-body a {
+  color: #0066cc;
+  text-decoration: underline;
+}
+
+.post img {
+  width: 100%;
+  height: auto; /* preserve aspect ratio */
+  display: block; /* remove inline spacing */
+  margin: 10px 0; /* optional spacing above/below */
+}

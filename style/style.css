@@ -111,3 +111,19 @@ body::-webkit-scrollbar {
 #navigator-controls button:hover {
   opacity: 0.8;
 }
+
+/* Post title links: black by default, underline on hover */
+.post h2 a,
+.post h2 a:link,
+.post h2 a:visited {
+  color: #000 !important;               /* black text */
+  text-decoration: none !important;     /* no underline by default */
+  border-bottom: 2px solid transparent; 
+  transition: border-color 0.2s;
+  cursor: pointer;
+}
+
+.post h2 a:hover,
+.post h2 a:active {
+  border-bottom: 2px solid #000 !important; /* underline appears on hover */
+}

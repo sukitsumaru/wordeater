@@ -8,7 +8,7 @@ const isHomepage = location.pathname === '/';
 const params = new URLSearchParams(location.search);
 const permalinkFile = params.get('file');
 
-// Fetch all posts
+// Fetch all posts!
 fetch('posts/index.json')
   .then(res => res.json())
   .then(list => {

@@ -1,38 +1,63 @@
-/* posts.css */
+/* Post box */
 .post {
-  border: 1px solid #ccc;      /* simple border */
-  border-radius: 8px;          /* rounded corners */
-  padding: 16px;               /* inner spacing */
-  margin-bottom: 20px;         /* spacing between posts */
-  background-color: #fefefe;   /* light background */
-  box-shadow: 0 2px 4px rgba(0,0,0,0.05); /* subtle shadow */
+  width: 100%;
+  padding: 16px;
+  margin-bottom: 20px;
+  border: 1px solid #000;       /* border visible */
+  border-radius: 8px;
+  background-color: #fefefe;
+  box-shadow: none;
 }
 
+/* Post title */
 .post h2 {
   margin-top: 0;
   margin-bottom: 8px;
   font-size: 1.5em;
 }
 
+.post h2 a {
+  color: #000;                  /* black text */
+  text-decoration: none;        /* no underline by default */
+  border-bottom: 2px solid transparent; /* invisible underline */
+  transition: border-color 0.2s; 
+  cursor: pointer;
+}
+
+.post h2 a:hover {
+  border-bottom: 2px solid #000; /* black underline appears on hover */
+}
+
+
+.post h2 a:hover {
+  border-bottom: 2px solid currentColor; /* underline on hover */
+}
+
+/* Post date */
 .post-date {
   font-size: 0.9em;
   color: #666;
   margin-bottom: 12px;
 }
 
+/* Post content */
 .post-body {
   line-height: 1.5;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
 }
 
-/* Optional: make links inside post-body stand out */
+/* Links inside post content */
 .post-body a {
   color: #0066cc;
   text-decoration: underline;
 }
 
+/* Post images */
 .post img {
   width: 100%;
-  height: auto; /* preserve aspect ratio */
-  display: block; /* remove inline spacing */
-  margin: 10px 0; /* optional spacing above/below */
+  height: auto;
+  display: block;
+  margin: 10px 0;
 }

@@ -35,6 +35,9 @@
   <div class="nav-image"></div>
 </nav>
 
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
 <div class="layout">
   <div class="sidebar">
     <div class="sidebar-section">
@@ -64,7 +67,7 @@
 <script src="js/mobile.js"></script>
 
 <script>
-  fetch('posts/home.txt')
+  fetch('home.txt')
     .then(res => res.text())
     .then(text => {
       const postContainer = document.getElementById('post-content');

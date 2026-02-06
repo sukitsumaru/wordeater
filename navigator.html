@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Navigator - WordEater</title>
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/posts.css">
+<link rel="stylesheet" href="style/mobile.css">
+<link rel="stylesheet" href="style/darkmode.css">
+<style>
+ 
+
+  #navigator-controls {
+    text-align: center;
+    margin-bottom: 20px;
+    margin-top: 50px;
+  }
+
+  #navigator-controls button {
+    padding: 6px 12px;
+    margin: 0 5px;
+    border: none;
+    border-radius: 4px;
+    background: black;
+    color: white;
+    cursor: pointer;
+    font-family: Verdana, sans-serif;
+    text-transform: uppercase;
+    font-size: 12px;
+    transition: opacity 0.3s ease;
+  }
+
+  #navigator-controls button:hover {
+    opacity: 0.8;
+  }
+</style>
+</head>
+<body>
+
+<!-- Mobile nav -->
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <div class="links">
+      <a href="home.html">home</a>
+      <a href="index.html">blog</a>
+      <a href="navigator.html">navigator</a>
+    </div>
+
+    <a href="mainpage.html" class="brand">wordeater.online</a>
+    <button class="dark-mode-toggle">theme</button>
+  </div>
+
+  <div class="nav-image"></div>
+</nav>
+
+<div class="layout">
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <div class="sidebar-section">
+      <div class="content-box">
+        <a href="mainpage.html">wordeater.online</a>
+      </div>
+      <div class="content-box horizontal-links">
+        <a href="home.html">home</a>
+        <a href="index.html">blog</a>
+        <a href="navigator.html">navigator</a>
+      </div>
+    </div>
+    <div class="sidebar-section">Sidebar 2</div>
+    <div class="sidebar-section">
+      <button class="dark-mode-toggle">theme</button>
+    </div>
+  </div>
+
+  <!-- Main content -->
+  <div class="main" style="background:black;">
+    <noscript>
+      <div class="post">Please enable JavaScript to see posts.</div>
+    </noscript>
+
+    <div id="navigator-controls">
+      <button id="prev-post">Previous</button>
+      <button id="next-post">Next</button>
+    </div>
+
+    <div id="post-content"></div>
+  </div>
+</div>
+
+<script src="js/navigator.js"></script>
+<script src="js/mobile.js"></script>
+</body>
+</html>

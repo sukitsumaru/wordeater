@@ -1,0 +1,80 @@
+/* Transition for smooth dark mode */
+body,
+.main,
+.post {
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+/* Dark mode styles */
+body.dark {
+  background: black;
+  color: white;
+}
+
+body.dark .main {
+  background: rgb(28, 28, 29);
+}
+
+body.dark .post {
+  background-color: #181618;
+  color: white;
+  border: 1px solid #1d1d1d;
+}
+
+/* Dark mode button: solid black box with white text */
+#dark-mode-toggle {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background: black;
+  color: white;
+  cursor: pointer;
+  font-family: Verdana, sans-serif;
+  text-transform: uppercase;
+}
+
+#dark-mode-toggle:hover {
+  opacity: 0.8;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: url('background.jpg') center/cover no-repeat;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+}
+
+body.dark::before {
+  opacity: 0; /* fade out background in dark mode */
+}
+
+.dark-mode-toggle {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  background: black;
+  color: white;
+  cursor: pointer;
+  font-family: Verdana, sans-serif;
+  text-transform: uppercase;
+  font-size: 12px;
+  transition: opacity 0.3s ease;
+}
+
+.dark-mode-toggle:hover {
+  opacity: 0.8;
+}
+
+/* Ensure grid layout keeps links + button right-aligned */
+.mobile-nav-inner {
+  width: 100%;
+  max-width: 750px;
+  min-width: 600px;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items: center;
+}

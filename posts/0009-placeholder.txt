@@ -1,0 +1,10 @@
+Sample Post Title
+[2026-02-04 160000]
+This is a placeholder post to test the blog system.
+
+You can write multiple lines here. 
+Use markdown-style formatting if you like
+- Bullet point 1
+- Bullet point 2
+
+Bold text and _italic text_ are supported visually if you implement CSS or markup rendering.

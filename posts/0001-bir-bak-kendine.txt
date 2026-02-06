@@ -1,0 +1,12 @@
+Hello world!
+[2026-02-04 160000]
+<b>
+First test! </b>
+
+<h2>Now the header</h2>
+
+Almost like what i thinketh..
+
+<p>A paragraphA paragraphA paragraphA paragraphA paragraphA paragraphA paragraphA paragraphA paragraphA paragraphA paragraph</p>
+
+image time <img src="C:\Users\rain\Documents\ShareX\Screenshots\2025-09">

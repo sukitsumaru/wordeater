@@ -3,38 +3,11 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>navigator -wordEater</title>
+<title>navigator - wordEater</title>
 <link rel="stylesheet" href="style/style.css">
 <link rel="stylesheet" href="style/posts.css">
 <link rel="stylesheet" href="style/mobile.css">
 <link rel="stylesheet" href="style/darkmode.css">
-<style>
- 
-
-  #navigator-controls {
-    text-align: center;
-    margin-bottom: 20px;
-    margin-top: 50px;
-  }
-
-  #navigator-controls button {
-    padding: 6px 12px;
-    margin: 0 5px;
-    border: none;
-    border-radius: 4px;
-    background: black;
-    color: white;
-    cursor: pointer;
-    font-family: Verdana, sans-serif;
-    text-transform: uppercase;
-    font-size: 12px;
-    transition: opacity 0.3s ease;
-  }
-
-  #navigator-controls button:hover {
-    opacity: 0.8;
-  }
-</style>
 </head>
 <body>
 
@@ -46,11 +19,9 @@
       <a href="index.html">blog</a>
       <a href="navigator.html">navigator</a>
     </div>
-
     <a href="mainpage.html" class="brand">wordeater.online</a>
     <button class="dark-mode-toggle">theme</button>
   </div>
-
   <div class="nav-image"></div>
 </nav>
 
@@ -79,12 +50,26 @@
       <div class="post">Please enable JavaScript to see posts.</div>
     </noscript>
 
+<div id="tree-overlay" style="display:none;">
+ 
+  <div id="tree-container">
+    <!-- Tree posts injected here -->
+  </div>
+</div>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <!-- Navigator controls -->
     <div id="navigator-controls">
       <button id="prev-post">Previous</button>
       <button id="next-post">Next</button>
+      <button id="index-btn">Index</button>
+      <button id="home-btn">Home</button>
     </div>
 
-    <div id="post-content"></div>
+    <!-- Dynamic post container -->
+    <div id="posts"></div>
   </div>
 </div>
 

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blog Layout Base</title>
+<link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/posts.css">
+<link rel="stylesheet" href="style/mobile.css">
+<link rel="stylesheet" href="style/darkmode.css">
+</head>
+<body>
+  
+<nav class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <div class="links">
+      <a href="home.html">home</a>
+      <a href="index.html">blog</a>
+      <a href="navigator.html">navigator</a>
+    </div>
+
+    <a href="mainpage.html" class="brand">wordeater.online</a>
+    <button class="dark-mode-toggle">theme</button>
+  </div>
+
+  <div class="nav-image"></div>
+</nav>
+
+<div class="layout">
+<div class="sidebar">
+  <div class="sidebar-section">
+    <div class="content-box">
+      <a href="mainpage.html">wordeater.online</a>
+    </div>
+    <div class="content-box horizontal-links">
+      <a href="home.html">home</a>
+      <a href="index.html">blog</a>
+      <a href="navigator.html">navigator</a>
+    </div>
+  </div>
+  <div class="sidebar-section">Sidebar 2</div>
+ <div class="sidebar-section">
+  <button class="dark-mode-toggle">theme</button>
+</div>
+</div>
+
+<div class="main" style="background:black;">
+  <noscript>
+    <div class="post">
+      Please enable JavaScript to see posts.
+    </div>
+  </noscript>
+
+  <div id="post-content"></div>
+</div>
+<script src="js/posts.js"></script>
+
+<script>
+// Get all dark mode buttons
+const darkButtons = document.querySelectorAll('.dark-mode-toggle');
+
+// Load saved theme from localStorage
+if (localStorage.getItem('theme') === 'dark') {
+  document.body.classList.add('dark');
+}
+
+// Function to toggle theme
+function toggleDarkMode() {
+  document.body.classList.toggle('dark');
+  if (document.body.classList.contains('dark')) {
+    localStorage.setItem('theme', 'dark');
+  } else {
+    localStorage.setItem('theme', 'light');
+  }
+}
+
+// Attach click listeners
+darkButtons.forEach(btn => {
+  btn.addEventListener('click', toggleDarkMode);
+});
+
+
+</script>
+</body>
+</html>

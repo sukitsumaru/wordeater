@@ -1,0 +1,11 @@
+<h2>night notes</h2>
+[2026-02-04 160000]
+<p>smaller text</p>
+
+<img src="/images/night.jpg">
+
+<p>Written late, revised never.</p>
+
+<p>This content block exists only to occupy space.</p>
+
+<div class="date">Nov 02, 2025</div>

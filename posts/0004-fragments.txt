@@ -1,0 +1,11 @@
+<h2>fragments</h2>
+[2026-02-04 160000]
+<p>smaller text</p>
+
+<img src="/images/room.jpg">
+
+<p>Short thoughts, disconnected pieces, and incomplete observations.</p>
+
+<p>This post tests mid-list rendering.</p>
+
+<div class="date">Dec 18, 2025</div>

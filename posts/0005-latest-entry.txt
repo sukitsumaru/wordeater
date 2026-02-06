@@ -1,5 +1,5 @@
 <h2>latest entry</h2>
-[2026-04-04 160000]
+2026-06-02T12:30:00
 <p>smaller text</p>
 
 <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsXWgGDYHAb1g8FDwx_KfAzo01FBKxHF0CBg&s">

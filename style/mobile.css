@@ -5,69 +5,71 @@
 
 /* ================= MOBILE MODE ================= */
 @media (max-width: 1020px) {
+
+  /* Hide sidebar completely */
   .sidebar {
     width: 0;
     transform: translateX(-100%);
     overflow: hidden;
   }
 
-  body {
-    background: none;
-  }
-
-  .layout {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  /* Main container */
+  /* Main content full width */
   .main {
+    margin-left: 0;
     width: 100%;
     max-width: 100%;
-    margin: 48px auto 0;
-    padding: 10px;  /* smaller padding for mobile */
+    padding: 10px 15px;
     box-shadow: none;
   }
 
-  /* Posts */
- .post {
+  /* Mobile nav container */
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 100%;
-    margin: 0 0 20px 0;
-    padding: 10px; /* optional smaller padding */
+    height: 48px;
+    background: #000;
+    z-index: 100;
+    justify-content: center;
+    padding: 0 10px;
   }
 
-  .post img {
-    width: 100%;
-    height: auto;
-  }
-
-  .post-body {
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    white-space: pre-wrap;
-  }
-}
-
-  /* Navbar fixes */
+  /* Inner nav flex layout to scale */
   .mobile-nav-inner {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    padding: 0 10px;
     flex-wrap: wrap;
+    width: 100%;
+    max-width: 100%;
   }
 
+  /* Brand */
+  .mobile-nav .brand {
+    font-weight: bold;
+    text-transform: lowercase;
+    color: white;
+    text-decoration: none;
+    font-family: Verdana, sans-serif;
+    white-space: normal; /* allow wrapping */
+    flex-shrink: 1;
+  }
+
+  /* Links */
   .mobile-nav .links {
     display: flex;
     gap: 8px;
-    flex-wrap: wrap;
+    flex-wrap: wrap; /* wrap links if needed */
     justify-content: flex-start;
     margin-left: 0;
+    flex-shrink: 1;
   }
 
-  .mobile-nav .brand {
-    white-space: normal;
+  .mobile-nav .links a {
+    font-size: 14px;
+    color: white;
+    text-decoration: none;
   }
 }

@@ -164,7 +164,7 @@ body::-webkit-scrollbar {
     margin-left: 0;
     width: 100%;
     max-width: 100%;
-    padding: 20px;
+    padding: 0px;
     box-shadow: none;
   }
 

@@ -39,13 +39,14 @@
     justify-content: center;
   }
 
-  .mobile-nav-inner {
-    width: 100%;
-    max-width: 100%;
-    display: grid;
-    grid-template-columns: 1fr auto 1fr;
-    align-items: center;
-  }
+.mobile-nav-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 10px;
+  flex-wrap: wrap; /* allow links to wrap if too wide */
+}
 
   .mobile-nav .brand {
     justify-self: center;
@@ -57,12 +58,13 @@
     white-space: nowrap;
   }
 
-  .mobile-nav .links {
-    justify-self: start;
-    display: flex;
-    gap: 10px;
-    margin-left: 30px;
-  }
+.mobile-nav .links {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin-left: 0;
+}
 
   .mobile-nav .links a {
     color: white;

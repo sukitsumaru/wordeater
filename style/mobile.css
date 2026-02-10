@@ -49,15 +49,16 @@
   }
 
   /* Brand */
-  .mobile-nav .brand {
-    font-weight: bold;
-    text-transform: lowercase;
-    color: white;
-    text-decoration: none;
-    font-family: Verdana, sans-serif;
-    white-space: normal; /* allow wrapping */
-    flex-shrink: 1;
-  }
+.mobile-nav .brand {
+  font-weight: bold;
+  text-transform: lowercase;
+  color: white;
+  text-decoration: none;
+  font-family: Verdana, sans-serif;
+  white-space: normal;
+  flex-shrink: 1;
+  font-size: 14px; /* smaller size */
+}
 
   /* Links */
   .mobile-nav .links {

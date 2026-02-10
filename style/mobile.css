@@ -13,13 +13,14 @@
     overflow: hidden;
   }
 
-  /* Main content full width */
-.main {
-  width: 100%;
-  max-width: 100%;
-  padding: 0; /* remove side padding */
-  box-shadow: none;
-}
+  .main {
+    margin-top: 60px; /* match navbar height */
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 0; /* remove all padding */
+    box-shadow: none;
+  }
 
 
   /* Mobile nav container */

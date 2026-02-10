@@ -75,3 +75,9 @@
     text-decoration: none;
   }
 }
+
+  .post {
+    padding: 0;      /* remove all padding */
+    padding-top: 40px; /* add 40px on top only */
+  }
+}

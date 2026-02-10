@@ -11,7 +11,7 @@
     overflow: hidden;
   }
 
-    body {
+  body {
     background: none;
   }
 
@@ -23,9 +23,8 @@
   .main {
     margin: 48px auto 0;
     width: 100%;
-    max-width: 750px;
-    min-width: 600px;
-        margin-left: 0;
+    max-width: 100%;
+    margin-left: 0;
   }
 
   .mobile-nav {
@@ -40,14 +39,13 @@
     justify-content: center;
   }
 
-.mobile-nav-inner {
-  width: 100%;
-  max-width: 750px;
-  min-width: 600px;
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-}
+  .mobile-nav-inner {
+    width: 100%;
+    max-width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+  }
 
   .mobile-nav .brand {
     justify-self: center;
@@ -60,21 +58,15 @@
   }
 
   .mobile-nav .links {
-  justify-self: start;   /* move to left */
-  display: flex;
-  gap: 10px;
-  margin-left: 30px;
-}
+    justify-self: start;
+    display: flex;
+    gap: 10px;
+    margin-left: 30px;
+  }
 
   .mobile-nav .links a {
     color: white;
     text-decoration: none;
     font-size: 14px;
   }
-
-  :root {
-  --content-max: 750px;
-  --content-min: 600px;
 }
-}
-

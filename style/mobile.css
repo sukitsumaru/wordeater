@@ -15,7 +15,6 @@
 
   /* Main content full width */
 .main {
-  margin: 0px 0 0 0; /* top margin = navbar height, sides 0 */
   width: 100%;
   max-width: 100%;
   padding: 0; /* remove side padding */
@@ -73,11 +72,5 @@
     font-size: 14px;
     color: white;
     text-decoration: none;
-  }
-}
-
-  .post {
-    padding: 0;      /* remove all padding */
-    padding-top: 40px; /* add 40px on top only */
   }
 }

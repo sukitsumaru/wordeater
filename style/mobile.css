@@ -15,7 +15,7 @@
 
   /* Main content full width */
 .main {
-  margin: 160px 0 0 0; /* top margin = navbar height, sides 0 */
+  margin: 60px 0 0 0; /* top margin = navbar height, sides 0 */
   width: 100%;
   max-width: 100%;
   padding: 0; /* remove side padding */

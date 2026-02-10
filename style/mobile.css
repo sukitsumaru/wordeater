@@ -20,17 +20,24 @@
     align-items: center;
   }
 
-.main {
+  /* Updated rules to fix zooming */
+  .main {
     width: 100%;
     max-width: 100%;
     margin: 48px auto 0;
-}
+  }
 
-.mobile-nav-inner {
+  .mobile-nav {
+    display: flex;
+    position: fixed;
+    top: 0;
+    left: 0;
     width: 100%;
-    max-width: 100%;
-}
-
+    height: 48px;
+    background: #000;
+    z-index: 100;
+    justify-content: center;
+  }
 
   .mobile-nav-inner {
     width: 100%;
@@ -62,15 +69,5 @@
     text-decoration: none;
     font-size: 14px;
   }
-}
-
-* {
-  box-sizing: border-box;
-  max-width: 100%;
-  overflow-wrap: break-word;
-}
-img, video, iframe {
-  max-width: 100%;
-  height: auto;
 }
 

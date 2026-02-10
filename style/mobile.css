@@ -20,7 +20,7 @@
     align-items: center;
   }
 
-  /* Updated rules to fix zooming */
+  /* Fix zooming */
   .main {
     width: 100%;
     max-width: 100%;
@@ -71,3 +71,8 @@
   }
 }
 
+/* Ensure images scale */
+img, video, iframe {
+  max-width: 100%;
+  height: auto;
+}

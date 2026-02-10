@@ -225,3 +225,23 @@ body::-webkit-scrollbar {
     box-sizing: border-box;
     padding: 1rem; /* optional */
 }
+
+@media (max-width: 1020px) {
+  .sidebar {
+    width: 0;
+    transform: translateX(-100%);
+  }
+
+  .main {
+    margin-left: 0;
+    width: 100%;
+    max-width: 100%;
+    padding: 20px;
+    box-shadow: none;
+  }
+
+  #tree-container {
+    max-width: 100%;
+    padding: 15px;
+  }
+}

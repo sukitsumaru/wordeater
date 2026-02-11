@@ -31,7 +31,7 @@ body.dark .post {
   color: white;
   cursor: pointer;
   font-family: Verdana, sans-serif;
-  text-transform: uppercase;
+  text-transform: lowercase;
 }
 
 #dark-mode-toggle:hover,

@@ -97,8 +97,8 @@ body::-webkit-scrollbar {
 /* Post links and buttons */
 #navigator-controls {
   text-align: center;
-  margin-bottom: 20px;
-  margin-top: 50px;
+  margin-bottom: 10px;
+  margin-top: 10px;
 }
 
 #navigator-controls button {
@@ -144,6 +144,62 @@ body::-webkit-scrollbar {
   background-color: #000;
   color: #fff;
   padding: 15px 20px;
+}
+
+.year {
+  font-weight: bold;
+  font-size: 1.1em;
+  cursor: pointer;
+  margin: 10px 0;      /* vertical spacing between years */
+  display: flex;
+  align-items: center;  /* keeps text and triangle aligned */
+}
+
+.year::after {
+  content: "▼";         /* triangle pointing down */
+  font-size: 0.9em;
+  margin-left: 6px;     /* space between year text and triangle */
+}
+
+.post-item {
+  padding-left: 20px;       /* indentation from year */
+  margin: 5px 0;            /* vertical spacing between posts */
+  cursor: pointer;
+  border-bottom: none;      /* optional: remove line if not needed */
+}
+
+.post-item:hover {
+  background-color: rgba(255,255,255,0.05);
+  border-radius: 2px;
+}
+
+/* Year headers */
+#tree-container .year {
+  font-weight: bold;
+  font-size: 1.4em;   /* bigger font */
+  cursor: pointer;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+#tree-container .year::after {
+  content: "▼";
+  font-size: 1em;      /* bigger triangle */
+  margin-left: 6px;
+}
+
+/* Posts under each year */
+#tree-container .post-item {
+  padding-left: 20px;
+  margin: 6px 0;       /* spacing between posts */
+  cursor: pointer;
+  font-size: 1.1em;    /* bigger font for posts */
+}
+
+#tree-container .post-item:hover {
+  background-color: rgba(255,255,255,0.05);
+  border-radius: 2px;
 }
 
 /* ================= POSTS ================= */

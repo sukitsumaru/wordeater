@@ -146,6 +146,11 @@ body::-webkit-scrollbar {
   padding: 15px 20px;
 }
 
+#tree-container .year,
+#tree-container .post-item {
+  user-select: none;  /* prevent text selection */
+}
+
 .year {
   font-weight: bold;
   font-size: 1.1em;

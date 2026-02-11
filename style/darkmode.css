@@ -15,10 +15,21 @@ body.dark .main {
   background: rgb(28, 28, 29);
 }
 
+/* Posts black, text white */
 body.dark .post {
-  background-color: #181618;
+  background-color: black;
   color: white;
   border: 1px solid #1d1d1d;
+}
+
+/* Headers white */
+body.dark h1,
+body.dark h2,
+body.dark h3,
+body.dark h4,
+body.dark h5,
+body.dark h6 {
+  color: white;
 }
 
 /* Dark mode button: solid black box with white text */
@@ -43,4 +54,14 @@ body.dark .post {
 .mobile-nav-inner {
   width: 100%;
   max-width: 100%;
+}
+
+/* Links white in dark mode */
+body.dark a {
+  color: white;
+  text-decoration: none;
+}
+
+body.dark a:hover {
+  text-decoration: underline;
 }

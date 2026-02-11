@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>home - wordEater</title>
 <link rel="stylesheet" href="style/style.css">
+<link rel="stylesheet" href="style/posts.css">
 <link rel="stylesheet" href="style/mobile.css">
 <style>
   /* Override background for home page only */
@@ -17,6 +18,41 @@
     color: white; /* ensure text is visible */
     margin-top: 100px;
   }
+
+
+/* Override post CSS for dark theme */
+.post {
+  background-color: #000000 !important;
+  color: #fefefe !important;
+  border: 1px solid #000000 !important;
+}
+
+.post h2 a {
+  color: #000000 !important;
+  border-bottom: 2px solid transparent;
+}
+
+.post h2 a:hover {
+  border-bottom: 2px solid #000000;
+}
+
+.post-date {
+  color: #bbb !important;
+}
+
+.post-body {
+  color: #eee !important;
+}
+
+.post-body a {
+  color: #1e90ff !important;
+}
+
+.post img {
+  border-radius: 4px;
+}
+
+
 </style>
 </head>
 <body>
@@ -51,26 +87,42 @@
     <div class="sidebar-section"></div>
   </div>
 
-<div class="main" style="background:black;">
+                <div class="main" style="background: black;">
   <noscript>
     <div class="post">
       Please enable JavaScript to see content.
     </div>
   </noscript>
-
-  <div id="post-content"></div>
-</div>
-
-<script src="js/mobile.js"></script>
+                                <div id="posts"></div>
+                </div>
+                                            
+                </div>
 
 <script>
-  fetch('home.txt')
-    .then(res => res.text())
-    .then(text => {
-      const postContainer = document.getElementById('post-content');
-      postContainer.innerHTML = `<div class="post">${text}</div>`;
-    });
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const container = document.getElementById('posts');
+
+    // Fetch posts from JSON
+    const response = await fetch('posts.json');
+    const data = await response.json();
+
+    // Find post with id=0
+    const post = data.find(p => p.id === 0);
+
+    if (post) {
+        const div = document.createElement('div');
+        div.className = 'post';
+        div.innerHTML = `
+            <h2><a href="navigator.html?id=${post.id}">${post.title}</a></h2>
+            <div class="post-date">${new Date(post.date).toDateString()}</div>
+            <div class="post-body">${post.content}</div>
+        `;
+        container.appendChild(div);
+    }
+});
 </script>
+<script src="js/mobile.js"></script>
 
 
 </body>

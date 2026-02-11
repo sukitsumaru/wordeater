@@ -6,7 +6,10 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     // Fetch posts from JSON
     const response = await fetch('posts.json');
-    const data = await response.json();
+    let data = await response.json();
+
+    // Remove post with id=0
+    data = data.filter(post => post.id !== 0);
 
     // Sort posts newest first
     data.sort((a, b) => new Date(b.date) - new Date(a.date));

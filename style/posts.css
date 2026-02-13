@@ -55,3 +55,8 @@
   display: block;
   margin-top: 10px;
 }
+
+i {
+    display: block;
+    text-align: center;
+}

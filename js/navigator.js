@@ -1,48 +1,64 @@
 document.addEventListener("DOMContentLoaded", async () => {
     const params = new URLSearchParams(window.location.search);
     const postId = params.get("id");
+    const tagParam = params.get("tag");
 
     const container = document.getElementById("posts");
     const prevBtn = document.getElementById("prev-post");
     const nextBtn = document.getElementById("next-post");
     const indexBtn = document.getElementById("index-btn");
-    const homeBtn = document.getElementById("home-btn");
+    const reverseBtn = document.getElementById("reverse-btn");
 
     const overlay = document.getElementById("tree-overlay");
     const treeContainer = document.getElementById("tree-container");
 
-    // Fetch posts
-    const response = await fetch('posts.json');
+    const lang = localStorage.getItem("lang") || (navigator.language.startsWith("tr") ? "tr" : "en");
+
+    const response = await fetch(`/posts/posts.${lang}.json`);
     const posts = await response.json();
 
-    // Sort posts newest first
     const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-    let currentIndex = sortedPosts.findIndex(p => p.id === Number(postId));
-    if (currentIndex === -1) currentIndex = 0;
 
-    // Render current post
+    function createPostDiv(post) {
+        const tagsHtml = post.tags ? post.tags.split(',').map(t => `<a href="navigator.html?tag=%23${t.trim()}" class="post-tag">#${t.trim()}</a>`).join(' ') + ' - ' : '';
+        const div = document.createElement("div");
+        div.className = "post";
+
+        // Format content: images overflow, but no extra <br> at start
+        let formattedContent = post.content
+            .replace(/<img\s+([^>]+)>/gi, '<img $1 style="width: calc(100% + 32px); margin-left: -16px; margin-right: -16px;">')
+            .replace(/<br\s*\/?>/gi, '<br><br>')
+            .replace(/(<img[^>]*>)<br><br>/gi, '$1<br>');
+
+        div.innerHTML = `
+            <h2><a href="navigator.html?id=${post.id}">${post.title}</a></h2>
+            <div class="post-date">${tagsHtml}${new Date(post.date).toDateString()}</div>
+            <div class="post-body">${formattedContent}</div>
+        `;
+        return div;
+    }
+
     function renderPost(index) {
         const post = sortedPosts[index];
         if (!post) return;
-
-        container.innerHTML = `
-            <div class="post">
-                <h2><a href="navigator.html?id=${post.id}">${post.title}</a></h2>
-                <div class="post-date">${new Date(post.date).toDateString()}</div>
-                <div class="post-body">${post.content}</div>
-            </div>
-        `;
-        currentIndex = index;
+        container.innerHTML = "";
+        container.appendChild(createPostDiv(post));
     }
 
-    // Build tree overlay
+    function renderPostsByTag(tag, reverse = false) {
+        const cleanTag = tag.startsWith("#") ? tag.slice(1) : tag;
+        container.innerHTML = "";
+        let matched = sortedPosts.filter(p => p.tags && p.tags.split(',').map(t => t.trim()).includes(cleanTag));
+        if (reverse) matched = matched.reverse();
+        matched.forEach(post => container.appendChild(createPostDiv(post)));
+    }
+
     function buildTree() {
         treeContainer.innerHTML = "";
         const years = {};
 
         sortedPosts.forEach(post => {
             const year = new Date(post.date).getFullYear();
-
             if (!years[year]) {
                 const yDiv = document.createElement("div");
                 yDiv.textContent = year;
@@ -61,8 +77,18 @@ document.addEventListener("DOMContentLoaded", async () => {
             }
 
             const pDiv = document.createElement("div");
-            pDiv.textContent = post.title;
             pDiv.className = "post-item";
+            pDiv.innerHTML = post.title;
+
+            if (post.tags) {
+                const tagsSpan = document.createElement("span");
+                tagsSpan.style.float = "right";
+                tagsSpan.style.fontSize = "0.8em";
+                tagsSpan.style.color = "#aaa";
+                tagsSpan.textContent = post.tags.split(',').map(t => `#${t.trim()}`).join(' ');
+                pDiv.appendChild(tagsSpan);
+            }
+
             pDiv.onclick = () => {
                 window.location.href = `navigator.html?id=${post.id}`;
             };
@@ -71,9 +97,10 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    // Navigation buttons (reload page with next/prev post id)
+    let currentIndex = sortedPosts.findIndex(p => p.id === (isNaN(Number(postId)) ? postId : Number(postId)));
+    if (currentIndex === -1) currentIndex = 0;
+
     prevBtn.onclick = () => {
-        // "Previous" = older post
         if (currentIndex < sortedPosts.length - 1) {
             const nextPost = sortedPosts[currentIndex + 1];
             window.location.href = `navigator.html?id=${nextPost.id}`;
@@ -81,7 +108,6 @@ document.addEventListener("DOMContentLoaded", async () => {
     };
 
     nextBtn.onclick = () => {
-        // "Next" = newer post
         if (currentIndex > 0) {
             const prevPost = sortedPosts[currentIndex - 1];
             window.location.href = `navigator.html?id=${prevPost.id}`;
@@ -93,20 +119,31 @@ document.addEventListener("DOMContentLoaded", async () => {
         overlay.style.display = "block";
     };
 
-    homeBtn.onclick = () => {
-        window.location.href = "index.html";
-    };
-
-    // Close overlay on click outside
     overlay.addEventListener("click", (e) => {
         if (e.target === overlay) overlay.style.display = "none";
     });
 
-    // Close overlay on Escape
     document.addEventListener("keydown", (e) => {
         if (e.key === "Escape") overlay.style.display = "none";
     });
 
-    // Initial render
-    renderPost(currentIndex);
+    // Reverse button logic (toggle text)
+    if (tagParam) {
+        reverseBtn.style.display = "inline-block";
+        let isReversed = false;
+
+        reverseBtn.onclick = () => {
+            isReversed = !isReversed;
+            renderPostsByTag(tagParam, isReversed);
+            reverseBtn.textContent = `Reverse Order (${isReversed ? 'Old → New' : 'New → Old'})`;
+        };
+    }
+
+    if (tagParam) {
+        renderPostsByTag(tagParam);
+    } else if (postId) {
+        renderPost(currentIndex);
+    } else {
+        renderPost(0);
+    }
 });

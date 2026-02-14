@@ -1,3 +1,5 @@
+/* ================= NUMERICAL POSTS ================= */
+
 /* Post box */
 .post {
   width: 100%;
@@ -12,7 +14,7 @@
 /* Post title */
 .post h2 {
   margin-top: 0;
-  margin-bottom: 8px;
+  margin-bottom: 16px; /* increased spacing */
   font-size: 1.5em;
 }
 
@@ -32,7 +34,6 @@
 .post-date {
   font-size: 0.9em;
   color: #666;
-  margin-bottom: 12px;
 }
 
 /* Post content */
@@ -59,4 +60,96 @@
 i {
     display: block;
     text-align: center;
+}
+
+/* ================= ALPHA POSTS ================= */
+
+/* Alphabetical post box */
+.alpha-post {
+  width: 100%;
+  padding: 20px;
+  margin-bottom: 24px;
+  border: 1px solid #000000; /* gray border */
+  border-radius: 0;        /* cornered */
+  background-color: #000;  /* black background */
+  color: #fff;             /* white text */
+  box-shadow: none;
+  padding-bottom: -10px;
+}
+
+/* Alphabetical post title */
+.alpha-post h2 {
+  margin-top: 0;
+  margin-bottom: 20px; /* increased spacing */
+  font-size: 1.6em;
+  color: #fff;
+}
+
+.alpha-post h2 a {
+  color: #fff;
+  text-decoration: underline; /* always underlined */
+  border-bottom: none; 
+  cursor: pointer;
+}
+
+.alpha-post h2 a:hover {
+  color: #ccc;
+}
+
+/* Alphabetical post date */
+.alpha-post .post-date {
+  font-size: 0.85em;
+  color: #aaa;
+  margin-bottom: 0px;
+}
+
+/* Alphabetical post content */
+.alpha-post .post-body {
+  line-height: 1.6;
+  word-wrap: break-word;
+}
+
+/* Links inside post content */
+.alpha-post .post-body a {
+  color: #1e90ff;
+  text-decoration: underline;
+}
+
+/* Post images */
+.alpha-post img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 12px;
+}
+
+/* Centered elements */
+.alpha-post i {
+  display: block;
+  text-align: center;
+}
+
+/* ================= FADE-IN ANIMATION ================= */
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.post, .alpha-post {
+  opacity: 0; /* start invisible */
+  animation: fadeIn 0.5s forwards; /* fade in over 0.5s */
+}
+
+/* Tag links inside numerical posts */
+.post-tag {
+    color: #aaa;       /* gray */
+    text-decoration: none;
+    cursor: pointer;
+    margin-right: 4px;
+}
+
+.post-tag:hover {
+    color: #ccc;
+    text-decoration: underline;
 }

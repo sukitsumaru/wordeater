@@ -15,6 +15,7 @@ body::-webkit-scrollbar {
   display: none;
 }
 
+
 /* ================= LAYOUT ================= */
 .layout {
   display: flex;
@@ -235,4 +236,21 @@ body::-webkit-scrollbar {
     max-width: 100%;
     padding: 15px;
   }
+}
+
+/* Language toggle button styled like dark-mode button */
+.lang-toggle {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  background: black;
+  color: white;
+  cursor: pointer;
+  font-family: Verdana, sans-serif;
+  text-transform: lowercase;
+  transition: opacity 0.3s ease, background 0.3s ease;
+}
+
+.lang-toggle:hover {
+  opacity: 0.8;
 }

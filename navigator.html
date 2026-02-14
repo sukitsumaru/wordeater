@@ -11,65 +11,67 @@
 </head>
 <body>
 
-    <!-- Mobile nav -->
-    <nav class="mobile-nav">
-        <div class="mobile-nav-inner">
-            <div class="links">
-                <a href="home.html">home</a>
-                <a href="index.html">blog</a>
-                <a href="navigator.html">navigator</a>
-            </div>
-            <a href="home.html" class="brand">wordeater.online</a>
-            <button class="dark-mode-toggle">theme</button>
+<!-- Mobile nav -->
+<nav class="mobile-nav">
+    <div class="mobile-nav-inner">
+        <div class="links">
+            <a href="index.html">home</a>
+            <a href="home.html">blog</a>
+            <a href="navigator.html">navigator</a>
         </div>
-        <div class="nav-image"></div>
-    </nav>
+        <a href="index.html" class="brand">wordeater.online</a>
+        <button class="dark-mode-toggle">theme</button>
+        <button class="lang-toggle">EN/TR</button>
+    </div>
+    <div class="nav-image"></div>
+</nav>
 
-    <div class="layout">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-section">
-                <div class="content-box">
-                    <a href="home.html">wordeater.online</a>
-                </div>
-                <div class="content-box horizontal-links">
-                    <a href="home.html">home</a>
-                    <a href="index.html">blog</a>
-                    <a href="navigator.html">navigator</a>
-                </div>
-            </div>
-            <div class="sidebar-section"></div>
-            <div class="sidebar-section">
-                <button class="dark-mode-toggle">theme</button>
-            </div>
+<!-- Sidebar -->
+<div class="sidebar">
+    <div class="sidebar-section">
+        <div class="content-box">
+            <a href="index.html">wordeater.online</a>
         </div>
+        <div class="content-box horizontal-links">
+            <a href="index.html">home</a>
+            <a href="home.html">blog</a>
+            <a href="navigator.html">navigator</a>
+        </div>
+    </div>
+    <div class="sidebar-section"></div>
+    <div class="sidebar-section">
+        <button class="dark-mode-toggle">theme</button>
+        <button class="lang-toggle">EN/TR</button>
+    </div>
+</div>
 
-        <!-- Main content -->
-        <div class="main" style="background:black;">
-            <noscript>
-                <div class="post">Please enable JavaScript to see posts.</div>
-            </noscript>
+<!-- Main content -->
+<div class="main" style="background:black;">
+    <noscript>
+        <div class="post">Please enable JavaScript to see posts.</div>
+    </noscript>
 
-            <div id="tree-overlay" style="display:none;">
-                <div id="tree-container">
-                    <!-- Tree posts injected here -->
-                </div>
-            </div>
-
-            <!-- Navigator controls -->
-            <div id="navigator-controls">
-                <button id="prev-post">Previous</button>
-                <button id="next-post">Next</button>
-                <button id="index-btn">Index</button>
-                <button id="home-btn">Home</button>
-            </div>
-
-            <!-- Dynamic post container -->
-            <div id="posts"></div>
+    <div id="tree-overlay" style="display:none;">
+        <div id="tree-container">
+            <!-- Tree posts injected here -->
         </div>
     </div>
 
-    <script src="js/navigator.js"></script>
-    <script src="js/toggle.js"></script>
+<!-- Navigator controls -->
+<div id="navigator-controls">
+    <button id="prev-post">Previous</button>
+    <button id="next-post">Next</button>
+    <button id="index-btn">Index</button>
+    <button id="reverse-btn" style="display:none;">Reverse Order (New → Old)</button>
+</div>
+
+
+    <!-- Dynamic post container -->
+    <div id="posts"></div>
+</div>
+
+<script src="js/lang-detect.js"></script>
+<script src="js/navigator.js"></script>
+<script src="js/toggle.js"></script>
 </body>
 </html>

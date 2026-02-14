@@ -1,31 +1,46 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>hello</title>
-<style>
-  body {
-    margin: 0;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: black;
-    color: white;
-    font-family: Arial, sans-serif;
-    font-size: 1.2em;
-    text-align: center;
-  }
-  a {
-    color: white;
-    margin-top: 20px;
-    text-decoration: underline;
-  }
-</style>
+<title>Manga Reader</title>
+<link rel="stylesheet" href="style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  burada manga reader olacak... çok uzakta!
-  <a href="index.html">go back</a>
+<div id="wrapper">
+  <div class="top-controls controls-container">
+    <div class="controls row0">
+      <button id="viewMode">Change View Mode</button>
+    </div>
+    <div class="controls row1">
+      <button id="prevChapter">Prev Chapter</button>
+      <select id="chapterSelector"></select>
+      <button id="nextChapter">Next Chapter</button>
+    </div>
+    <div class="controls row2">
+      <button id="prevPage">Prev Page</button>
+      <span class="page-number" id="pageNumberTop"></span>
+      <button id="nextPage">Next Page</button>
+    </div>
+  </div>
+
+  <div id="imageContainer"></div>
+
+  <div class="bottom-controls controls-container">
+    <div class="controls row2">
+      <button id="prevPageBottom">Prev Page</button>
+      <span class="page-number" id="pageNumberBottom"></span>
+      <button id="nextPageBottom">Next Page</button>
+    </div>
+    <div class="controls row1">
+      <button id="prevChapterBottom">Prev Chapter</button>
+      <select id="chapterSelectorBottom"></select>
+      <button id="nextChapterBottom">Next Chapter</button>
+    </div>
+  </div>
+</div>
+
+<script src="reader.js"></script>
+
 </body>
 </html>

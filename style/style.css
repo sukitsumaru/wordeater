@@ -9,12 +9,12 @@ body {
   background: black;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  overflow-x: hidden;
 }
 
 body::-webkit-scrollbar {
   display: none;
 }
-
 
 /* ================= LAYOUT ================= */
 .layout {
@@ -84,7 +84,8 @@ body::-webkit-scrollbar {
 /* ================= MAIN ================= */
 .main {
   margin-left: 400px;
-  width: 1000px;
+  width: calc(100% - 400px);
+  max-width: 1000px;
   min-height: 100vh;
   background: white;
   display: flex;
@@ -149,29 +150,29 @@ body::-webkit-scrollbar {
 
 #tree-container .year,
 #tree-container .post-item {
-  user-select: none;  /* prevent text selection */
+  user-select: none;
 }
 
 .year {
   font-weight: bold;
   font-size: 1.1em;
   cursor: pointer;
-  margin: 10px 0;      /* vertical spacing between years */
+  margin: 10px 0;
   display: flex;
-  align-items: center;  /* keeps text and triangle aligned */
+  align-items: center;
 }
 
 .year::after {
-  content: "▼";         /* triangle pointing down */
+  content: "▼";
   font-size: 0.9em;
-  margin-left: 6px;     /* space between year text and triangle */
+  margin-left: 6px;
 }
 
 .post-item {
-  padding-left: 20px;       /* indentation from year */
-  margin: 5px 0;            /* vertical spacing between posts */
+  padding-left: 20px;
+  margin: 5px 0;
   cursor: pointer;
-  border-bottom: none;      /* optional: remove line if not needed */
+  border-bottom: none;
 }
 
 .post-item:hover {
@@ -179,11 +180,10 @@ body::-webkit-scrollbar {
   border-radius: 2px;
 }
 
-/* Year headers */
 #tree-container .year {
   padding-left: 30px;
   font-weight: bold;
-  font-size: 1.4em;   /* bigger font */
+  font-size: 1.4em;
   cursor: pointer;
   margin: 10px 0;
   display: flex;
@@ -192,16 +192,15 @@ body::-webkit-scrollbar {
 
 #tree-container .year::after {
   content: "▼";
-  font-size: 1em;      /* bigger triangle */
+  font-size: 1em;
   margin-left: 6px;
 }
 
-/* Posts under each year */
 #tree-container .post-item {
   padding-left: 60px;
-  margin: 6px 0;       /* spacing between posts */
+  margin: 6px 0;
   cursor: pointer;
-  font-size: 1.1em;    /* bigger font for posts */
+  font-size: 1.1em;
 }
 
 #tree-container .post-item:hover {
@@ -238,7 +237,7 @@ body::-webkit-scrollbar {
   }
 }
 
-/* Language toggle button styled like dark-mode button */
+/* Language toggle button */
 .lang-toggle {
   padding: 10px 20px;
   border: none;

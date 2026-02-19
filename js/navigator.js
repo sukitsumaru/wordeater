@@ -12,21 +12,29 @@ document.addEventListener("DOMContentLoaded", async () => {
     const overlay = document.getElementById("tree-overlay");
     const treeContainer = document.getElementById("tree-container");
 
-    const lang = localStorage.getItem("lang") || (navigator.language.startsWith("tr") ? "tr" : "en");
+    const lang = localStorage.getItem("lang") || 
+        (navigator.language.startsWith("tr") ? "tr" : "en");
 
-    const response = await fetch(`/posts/posts.${lang}.json`);
+    const response = await fetch(`posts/posts.${lang}.json`);
     const posts = await response.json();
 
-    const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    const sortedPosts = [...posts].sort(
+        (a, b) => new Date(b.date) - new Date(a.date)
+    );
 
     function createPostDiv(post) {
-        const tagsHtml = post.tags ? post.tags.split(',').map(t => `<a href="navigator.html?tag=%23${t.trim()}" class="post-tag">#${t.trim()}</a>`).join(' ') + ' - ' : '';
+        const tagsHtml = post.tags
+            ? post.tags.split(',')
+                .map(t => `<a href="navigator.html?tag=%23${t.trim()}" class="post-tag">#${t.trim()}</a>`)
+                .join(' ') + ' - '
+            : '';
+
         const div = document.createElement("div");
         div.className = "post";
 
-        // Format content: images overflow, but no extra <br> at start
         let formattedContent = post.content
-            .replace(/<img\s+([^>]+)>/gi, '<img $1 style="width: calc(100% + 32px); margin-left: -16px; margin-right: -16px;">')
+            .replace(/<img\s+([^>]+)>/gi,
+                '<img $1 style="width: calc(100% + 32px); margin-left: -16px; margin-right: -16px;">')
             .replace(/<br\s*\/?>/gi, '<br><br>')
             .replace(/(<img[^>]*>)<br><br>/gi, '$1<br>');
 
@@ -48,9 +56,17 @@ document.addEventListener("DOMContentLoaded", async () => {
     function renderPostsByTag(tag, reverse = false) {
         const cleanTag = tag.startsWith("#") ? tag.slice(1) : tag;
         container.innerHTML = "";
-        let matched = sortedPosts.filter(p => p.tags && p.tags.split(',').map(t => t.trim()).includes(cleanTag));
+
+        let matched = sortedPosts.filter(p =>
+            p.tags &&
+            p.tags.split(',').map(t => t.trim()).includes(cleanTag)
+        );
+
         if (reverse) matched = matched.reverse();
-        matched.forEach(post => container.appendChild(createPostDiv(post)));
+
+        matched.forEach(post =>
+            container.appendChild(createPostDiv(post))
+        );
     }
 
     function buildTree() {
@@ -59,6 +75,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
         sortedPosts.forEach(post => {
             const year = new Date(post.date).getFullYear();
+
             if (!years[year]) {
                 const yDiv = document.createElement("div");
                 yDiv.textContent = year;
@@ -69,7 +86,8 @@ document.addEventListener("DOMContentLoaded", async () => {
                 years[year] = yearPosts;
 
                 yDiv.onclick = () => {
-                    yearPosts.style.display = yearPosts.style.display === "none" ? "block" : "none";
+                    yearPosts.style.display =
+                        yearPosts.style.display === "none" ? "block" : "none";
                 };
 
                 treeContainer.appendChild(yDiv);
@@ -85,7 +103,10 @@ document.addEventListener("DOMContentLoaded", async () => {
                 tagsSpan.style.float = "right";
                 tagsSpan.style.fontSize = "0.8em";
                 tagsSpan.style.color = "#aaa";
-                tagsSpan.textContent = post.tags.split(',').map(t => `#${t.trim()}`).join(' ');
+                tagsSpan.textContent = post.tags
+                    .split(',')
+                    .map(t => `#${t.trim()}`)
+                    .join(' ');
                 pDiv.appendChild(tagsSpan);
             }
 
@@ -97,45 +118,59 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
     }
 
-    let currentIndex = sortedPosts.findIndex(p => p.id === (isNaN(Number(postId)) ? postId : Number(postId)));
+    // FIX: normalize ID comparison to string
+    let currentIndex = sortedPosts.findIndex(p =>
+        String(p.id) === String(postId)
+    );
+
     if (currentIndex === -1) currentIndex = 0;
 
-    prevBtn.onclick = () => {
-        if (currentIndex < sortedPosts.length - 1) {
-            const nextPost = sortedPosts[currentIndex + 1];
-            window.location.href = `navigator.html?id=${nextPost.id}`;
-        }
-    };
+    if (prevBtn) {
+        prevBtn.onclick = () => {
+            if (currentIndex < sortedPosts.length - 1) {
+                const nextPost = sortedPosts[currentIndex + 1];
+                window.location.href = `navigator.html?id=${nextPost.id}`;
+            }
+        };
+    }
 
-    nextBtn.onclick = () => {
-        if (currentIndex > 0) {
-            const prevPost = sortedPosts[currentIndex - 1];
-            window.location.href = `navigator.html?id=${prevPost.id}`;
-        }
-    };
+    if (nextBtn) {
+        nextBtn.onclick = () => {
+            if (currentIndex > 0) {
+                const prevPost = sortedPosts[currentIndex - 1];
+                window.location.href = `navigator.html?id=${prevPost.id}`;
+            }
+        };
+    }
 
-    indexBtn.onclick = () => {
-        buildTree();
-        overlay.style.display = "block";
-    };
+    if (indexBtn) {
+        indexBtn.onclick = () => {
+            buildTree();
+            overlay.style.display = "block";
+        };
+    }
 
-    overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) overlay.style.display = "none";
-    });
+    if (overlay) {
+        overlay.addEventListener("click", (e) => {
+            if (e.target === overlay) overlay.style.display = "none";
+        });
+    }
 
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") overlay.style.display = "none";
+        if (e.key === "Escape" && overlay) {
+            overlay.style.display = "none";
+        }
     });
 
-    // Reverse button logic (toggle text)
-    if (tagParam) {
+    if (tagParam && reverseBtn) {
         reverseBtn.style.display = "inline-block";
         let isReversed = false;
 
         reverseBtn.onclick = () => {
             isReversed = !isReversed;
             renderPostsByTag(tagParam, isReversed);
-            reverseBtn.textContent = `Reverse Order (${isReversed ? 'Old → New' : 'New → Old'})`;
+            reverseBtn.textContent =
+                `Reverse Order (${isReversed ? 'Old → New' : 'New → Old'})`;
         };
     }
 
